@@ -1,0 +1,211 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Fondo con degradado */
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.tabs button {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  background: #e0e0e0;
+  color: #333;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+.tabs button.active {
+  background: #2575fc; /* Color principal */
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tabs button:hover {
+  background: #6a11cb; /* Color secundario */
+  color: #fff;
+}
+
+.content {
+  width: 100%;
+}
+
+.form-container {
+  background: #f7f9fc; /* Fondo claro */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+form input {
+  padding: 12px;
+  border: 1px solid #d1d9e6;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #333;
+  transition: border-color 0.3s;
+}
+form input:focus {
+  border-color: #6a11cb;
+  outline: none;
+  box-shadow: 0 0 3px rgba(106, 17, 203, 0.3);
+}
+
+form button {
+  padding: 12px;
+  font-size: 1rem;
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background: #6a11cb;
+}
+
+.error {
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  margin-top: -10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+}
+ul li button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background: #ff4d4f; /* Rojo para eliminar */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+ul li button:hover {
+  background: #ff6a6b;
+}
+
+ul li button:nth-child(1) {
+  background: #2575fc; /* Azul para editar */
+}
+
+ul li button:nth-child(1):hover {
+  background: #6a11cb;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .app-container {
+      padding: 20px;
+      max-width: 100%;
+  }
+
+  form input, form button {
+      font-size: 0.9rem;
+  }
+
+  ul li {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  ul li button {
+      margin-top: 10px;
+      width: 100%;
+  }
+}
+
+.add-student-form {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f0f8ff; /* Azul claro */
+  border: 1px solid #d1d9e6;
+  border-radius: 5px;
+}
+
+.add-student-form h4 {
+  margin: 0;
+  margin-bottom: 10px;
+  color: #2575fc;
+}
+
+.add-student-form input {
+  width: calc(100% - 130px);
+  margin-right: 10px;
+}
+
+.add-student-form button {
+  background: #2575fc;
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.add-student-form button:hover {
+  background: #6a11cb;
+}
