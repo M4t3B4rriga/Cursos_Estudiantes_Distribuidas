@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.espe.cursos.models.Estudiante;
 
-@FeignClient(name = "microserviceestudiantes", url = "localhost:8002/api/estudiantes")
+@FeignClient(name = "microserviceestudiantes", url = "micro-estudiante:8002/api/estudiantes")
 public interface EstudianteClientRest {
     @GetMapping("/{id}")
     Estudiante findById(@PathVariable Long id);

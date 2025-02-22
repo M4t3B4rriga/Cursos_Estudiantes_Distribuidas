@@ -1,0 +1,84 @@
+
+
+networks:
+  microservices-network:
+    driver: bridge
+
+services:
+  postgres-micro-curso:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: postgres-micro-curso
+    environment:
+      POSTGRES_USER: ${PostgreSQL_PASSWORD_CURSO}
+      POSTGRES_PASSWORD: ${PostgreSQL_PASSWORD_CURSO}
+      POSTGRES_DB: ${PostgreSQL_DATABASE_CURSO}
+    ports:
+      - "${PostgreSQL_PORT_CURSO}:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservices-network
+
+  mysql-micro-estudiante:
+    image: mysql:${MYSQL_VERSION}
+    container_name: mysql-micro-estudiante
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_ESTUDIANTES}
+    ports:
+      - "${MYSQL_PORT_ESTUDIANTES}:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - microservices-network
+
+  micro-curso:
+    build:
+      context: ./microservice_cursos
+    container_name: micro-cursos-app
+    ports:
+      - "${PORT_MICRO_CURSO}:${PORT_MICRO_CURSO}"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-micro-curso:5432/${PostgreSQL_DATABASE_CURSO}
+      SPRING_DATASOURCE_USERNAME: ${PostgreSQL_PASSWORD_CURSO}
+      SPRING_DATASOURCE_PASSWORD: ${PostgreSQL_PASSWORD_CURSO}
+    depends_on:
+      postgres-micro-curso:
+        condition: service_healthy
+    networks:
+      - microservices-network
+
+  micro-estudiante:
+    build:
+      context: ./microservice_estudiantes
+    container_name: micro-estudiante
+    ports:
+      - "${PORT_MICRO_ESTUDIANTE}:${PORT_MICRO_ESTUDIANTE}"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-micro-estudiante:3306/${MYSQL_DATABASE_ESTUDIANTES}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_ROOT_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      mysql-micro-estudiante:
+        condition: service_healthy
+    networks:
+      - microservices-network
+
+  frontend:
+    build:
+      context: ./front-microservicios
+    container_name: micro-frontend
+    ports:
+      - "${FRONTEND_PORT}:80"
+    networks:
+      - microservices-network
+    environment:
+      - REACT_APP_BACKEND_CURSOS=${REACT_APP_BACKEND_CURSOS}
+      - REACT_APP_BACKEND_ESTUDIANTES=${REACT_APP_BACKEND_ESTUDIANTES}
+

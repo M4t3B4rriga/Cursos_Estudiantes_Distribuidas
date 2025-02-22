@@ -1,5 +1,5 @@
-const BASE_URL_ESTUDIANTES = "http://localhost:8002/api/estudiantes";
-const BASE_URL_CURSOS = "http://localhost:8001/api/cursos";
+const BASE_URL_ESTUDIANTES = "http://20.83.171.11:8002/api/estudiantes";
+const BASE_URL_CURSOS = "http://20.83.171.11:8001/api/cursos";
 
 // Estudiantes API
 export const getEstudiantes = async () => {

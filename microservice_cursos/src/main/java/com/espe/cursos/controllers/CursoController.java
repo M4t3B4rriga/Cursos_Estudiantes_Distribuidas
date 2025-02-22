@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cursos")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://20.83.171.11:5173")
 public class CursoController {
 
     @Autowired
@@ -78,7 +78,7 @@ public class CursoController {
             optional = cursoService.addUser(estudiante, id);
         } catch (FeignException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("Error", "Usuario o curso no encontrado"));
+                    .body(Collections.singletonMap("Error", "Usuario o curso no encontrado wey"));
         }
 
         if (optional.isPresent()) {

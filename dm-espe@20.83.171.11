@@ -1,0 +1,35 @@
+
+#CREAR EL CONTENEDOR PARA QUE LEA ESTO Y SE CREE LA BASE DE DATOS PARA CORRER USAMOS docker run --env-file .env -p 8002:8002 -d --name eventos eventos-app
+#PORT=8002
+#DB_HOST=mysql:3306
+#DB_USER=root
+#DB_PASSWORD=mateo
+#DB_DATABASE=sisdb2025
+
+# Versión de MySQL
+MYSQL_VERSION=latest
+
+# Versión de PostgreSQL
+POSTGRES_VERSION=15
+
+# Credenciales y bases de datos
+MYSQL_ROOT_USER=root
+MYSQL_ROOT_PASSWORD=mateo
+PostgreSQL_PASSWORD_CURSO=mateo
+PostgreSQL_DATABASE_CURSO=sisdb2025
+MYSQL_DATABASE_ESTUDIANTES=sisdb2025
+
+# Puertos para cada servicio MySQL
+PostgreSQL_PORT_CURSO=5433
+MYSQL_PORT_ESTUDIANTES=3307
+
+# Puertos para los microservicios
+PORT_MICRO_CURSO=8001
+PORT_MICRO_ESTUDIANTE=8002
+
+# Puerto para el frontend
+FRONTEND_PORT=5173
+
+# Endpoints del frontend (Variables React)
+REACT_APP_BACKEND_CURSOS=http://20.83.171.11:${PORT_MICRO_CURSO}
+REACT_APP_BACKEND_ESTUDIANTES=http://20.83.171.11:${PORT_MICRO_ESTUDIANTE}
